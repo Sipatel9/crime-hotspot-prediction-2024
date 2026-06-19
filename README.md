@@ -1,155 +1,250 @@
-# Crime Hotspot Prediction Using Python & Machine Learning (2024 Dataset)
+# Crime Hotspot Prediction Using Python & Machine Learning (2024 Dataset) 📊
 
-This project performs crime analysis and next‑month hotspot prediction using the **London_Crimes_2024_Expanded** dataset. It applies Python‑based data science techniques to identify crime patterns, engineer lagged features, and build predictive models using Logistic Regression and Random Forest.
+Python-based crime hotspot analysis and prediction system using advanced data science and machine learning techniques on the 2024 London crime dataset.
 
----
+## 📋 Overview
 
-## 📌 Project Overview
+This project implements comprehensive crime analysis and predictive modeling to:
+- Analyze crime distribution across time, crime types, and geographic regions
+- Identify crime hotspots using statistical thresholds
+- Predict future crime locations with ML models
+- Provide actionable insights for law enforcement and community safety
 
-- Analyses crime distribution across time, crime types, and LSOA regions  
-- Aggregates data at **LSOA‑month** level  
-- Creates **lagged features** to avoid data leakage  
-- Defines hotspots using the **top 10% crime threshold**  
-- Predicts **Hotspot Next Month** using ML models  
-- Evaluates using:
-  - Accuracy  
-  - Precision  
-  - Recall  
-  - F1‑score  
-  - Confusion matrices  
+## 🎯 Features
 
-This project demonstrates structured reasoning, data cleaning, feature engineering, and predictive modelling for real‑world decision support.
+✅ Comprehensive crime data analysis  
+✅ Geographic hotspot identification  
+✅ Predictive modeling with multiple algorithms  
+✅ Temporal trend analysis  
+✅ Statistical insights and patterns  
+✅ Interactive visualizations  
+✅ Ethical considerations framework  
 
----
+## 📊 Dataset
 
-## 🧠 Methodology
+- **Source**: London Crimes 2024 Expanded Dataset
+- **Coverage**: Multiple London boroughs and LSOAs
+- **Records**: Thousands of crime incidents
+- **Features**: Crime type, location, date, outcome, coordinates
 
-### **1. Data Cleaning**
-- Removed missing or invalid entries  
-- Standardised date formats  
-- Filled missing outcome categories  
-- Ensured required fields (crime type, LSOA, coordinates) were present  
+## 🏗️ Methodology
 
-### **2. Aggregation**
+### 1. Data Cleaning
+- Removed missing or invalid entries
+- Standardized date formats
+- Filled missing outcome categories
+- Ensured required fields present
+
+### 2. Feature Aggregation
 Data grouped by:
-
+- LSOA (Lower Super Output Area)
+- Month and Year
+- Crime Type
 
 Generated:
-- Total crime count  
-- Crime‑type pivot table  
-- Month‑to‑month ordering  
+- Total crime count per LSOA-month
+- Crime-type pivot tables
+- Monthly ordering for temporal analysis
 
-### **3. Hotspot Definition**
-Hotspots = LSOA‑months in the **top 10%** of crime counts.
+### 3. Hotspot Definition
+**Hotspots = LSOA-months in the top 10% of crime counts**
 
-### **4. Lagged Features**
-Created previous‑month:
-- Crime counts  
-- Crime‑type counts  
-- Hotspot status  
+### 4. Lagged Features
+Created previous-month features to:
+- Prevent data leakage
+- Simulate real prediction scenarios
+- Capture temporal dependencies
 
-This prevents leakage and simulates real prediction.
-
-### **5. Modelling**
-Models used:
-- **Logistic Regression**
-- **Random Forest Classifier**
+### 5. Modeling
+Models evaluated:
+- **Logistic Regression** - Baseline linear model
+- **Random Forest Classifier** - Non-linear patterns
 
 Train/test split based on **time**, not random shuffle.
 
----
+## 📈 Results Summary
 
-## 📊 Results Summary
+### Logistic Regression
+- **Accuracy**: 0.916
+- **Precision**: 0.577
+- **Recall**: 0.908
+- **F1-Score**: 0.706
 
-### **Logistic Regression**
-- Accuracy: **0.916**
-- Precision: **0.577**
-- Recall: **0.908**
-- F1‑score: **0.706**
+### Random Forest (Best Performer)
+- **Accuracy**: 0.939
+- **Precision**: 0.681
+- **Recall**: 0.850
+- **F1-Score**: 0.756
 
-### **Random Forest**
-- Accuracy: **0.939**
-- Precision: **0.681**
-- Recall: **0.850**
-- F1‑score: **0.756**
+Random Forest performed best due to its ability to capture non-linear relationships in crime patterns.
 
-Random Forest performed best due to non‑linear relationships in crime patterns.
+## 📊 Visual Outputs
 
----
+All analysis and model results are visualized in the `figures/` folder:
 
-## 📂 Repository Structure
+- **Crime Type Distribution** - Bar chart of top 10 crime types
+- **Monthly Crime Trend** - Time series of crime over months
+- **Spatial Distribution** - Scatter plot of crime incidents
+- **Top LSOAs** - Regions with highest crime counts
+- **Confusion Matrices** - Logistic Regression and Random Forest
+- **Feature Importance** - Top predictive features from Random Forest
+- **Model Comparison** - Performance metrics table
 
----
+## 🧬 Feature Engineering
 
-## 📈 Visual Outputs
+### Key Features
+| Feature | Description |
+|---------|-------------|
+| **lagged_crime_count** | Previous month total crimes |
+| **crime_type_lags** | Previous month crime-specific counts |
+| **lagged_is_hotspot** | Was it a hotspot last month? |
+| **trend_features** | Month-over-month changes |
+| **seasonal_features** | Monthly seasonality patterns |
 
-The **figures/** folder includes:
-- Crime type distribution  
-- Monthly crime trends  
-- Spatial clustering  
-- Confusion matrices  
-- Feature importance  
-- Model comparison table
-- ## 📂 Figures
+## 🏗️ System Architecture
 
-The `figures/` folder contains all visual outputs used in this project, including:
+```
+Raw Crime Data
+    ↓
+Data Cleaning & Validation
+    ↓
+Feature Aggregation (LSOA-Month)
+    ↓
+Hotspot Definition (Top 10%)
+    ↓
+Lagged Feature Creation
+    ↓
+Train/Test Split (Time-based)
+    ↓
+Model Training
+    ├── Logistic Regression
+    └── Random Forest
+    ↓
+Evaluation & Metrics
+    ↓
+Visualization & Insights
+```
 
-### 🔹 Top 10 Crime Types (Bar Chart)
-![Top Crime Types](figures/top_crime_types.png)
+## 📁 Repository Structure
 
-### 🔹 Monthly Crime Trend (Line Chart)
-![Monthly Crime Trend](figures/monthly_trend.png)
+```
+├── data/
+│   └── London_Crimes_2024_Expanded.csv
+├── notebooks/
+│   ├── data_cleaning.ipynb
+│   ├── feature_engineering.ipynb
+│   ├── modeling.ipynb
+│   └── evaluation.ipynb
+├── figures/
+│   ├── top_crime_types.png
+│   ├── monthly_trend.png
+│   ├── spatial_distribution.png
+│   ├── top_lsoas.png
+│   ├── confusion_matrix_logreg.png
+│   ├── confusion_matrix_rf.png
+│   └── feature_importance_rf.png
+├── src/
+│   ├── data_processor.py
+│   ├── feature_engineer.py
+│   ├── models.py
+│   └── evaluation.py
+└── README.md
+```
 
-### 🔹 Spatial Distribution of Crime Incidents (Scatter Plot)
-![Spatial Distribution](figures/spatial_distribution.png)
+## 🚀 Getting Started
 
-### 🔹 Top 10 LSOAs by Crime Count
-![Top LSOAs](figures/top_lsoas.png)
+### Prerequisites
+```bash
+python >= 3.8
+pandas, numpy, scikit-learn
+matplotlib, seaborn, folium
+geopandas, shapely
+jupyter
+```
 
-### 🔹 Confusion Matrix – Logistic Regression
-![Confusion Matrix Logistic Regression](figures/confusion_matrix_logreg.png)
+### Installation
+```bash
+git clone https://github.com/Sipatel9/crime-hotspot-prediction-2024.git
+cd crime-hotspot-prediction-2024
+pip install -r requirements.txt
+```
 
-### 🔹 Confusion Matrix – Random Forest
-![Confusion Matrix Random Forest](figures/confusion_matrix_rf.png)
+### Running the Analysis
+```bash
+# Start Jupyter
+jupyter notebook
 
-### 🔹 Top 10 Feature Importances – Random Forest
-![Feature Importances](figures/feature_importance_rf.png)
+# Open and run notebooks in this order:
+# 1. data_cleaning.ipynb
+# 2. feature_engineering.ipynb
+# 3. modeling.ipynb
+# 4. evaluation.ipynb
+```
 
+## 💡 Key Insights
 
----
+- **Geographic Clustering** - Clear concentration of crime in specific LSOAs
+- **Temporal Patterns** - Seasonal and day-of-week variations in crime
+- **Crime Type Variation** - Different crimes concentrate in different areas
+- **Predictability** - Hotspots show temporal persistence (Random Forest: 85% recall)
 
-## 📘 Full Report
+## 🎓 Technologies
 
-The complete academic report is included in the **report/** folder, covering:
-- Research questions  
-- Stakeholder analysis  
-- Data cleaning  
-- Feature engineering  
-- Modelling  
-- Ethical considerations  
-- Limitations  
-[DataScience Assaignment 2.docx](https://github.com/user-attachments/files/27245011/DataScience.Assaignment.2.docx)
-
----
-
-## 🔗 Google Colab Notebook
-
-Add your Colab link here:
-https://colab.research.google.com/drive/1BK3TsgQQ5m9_oOCCO9z0o3RfrotDEy5I?usp=sharing[DataScience Assaignment 2.docx](https://github.com/user-
-
-
----
+- **Pandas/NumPy** - Data manipulation and numerical computing
+- **Scikit-learn** - Machine learning and evaluation
+- **Matplotlib/Seaborn** - Static visualizations
+- **Folium** - Interactive geographic maps
+- **GeoPandas** - Geospatial analysis
 
 ## ⚖️ Ethical Considerations
 
-- Predictive policing may reinforce historical bias  
-- Crime data reflects police activity, not true crime  
-- Models should support—not replace—human decision‑making  
+- **Predictive Policing Bias** - Models may reinforce historical bias in policing
+- **Data Limitations** - Crime data reflects police activity, not true crime rate
+- **Responsible AI** - Models should support, not replace, human decision-making
+- **Fairness** - Ensure equitable resource allocation across communities
+- **Transparency** - Stakeholders must understand model limitations
 
----
+## 📘 Full Report
+
+The complete academic report is included in the `report/` folder, covering:
+- Research questions and stakeholder analysis
+- Data cleaning and preprocessing
+- Feature engineering methodology
+- Model selection and training
+- Comprehensive evaluation metrics
+- Ethical considerations and limitations
+
+[Full Report Document](report/DataScience_Assignment_2.docx)
+
+## 🔗 Resources
+
+- 📊 [Google Colab Notebook](https://colab.research.google.com/drive/1BK3TsgQQ5m9_oOCCO9z0o3RfrotDEy5I?usp=sharing)
+- 📚 [Crime Data Documentation](https://data.london.gov.uk/)
+- 🗺️ [LSOA Geographic Data](https://geoportal.statistics.gov.uk/)
+
+## 🤝 Contributing
+
+Contributions welcome! Help us:
+- Improve prediction accuracy
+- Add new visualization types
+- Expand to other datasets/regions
+- Optimize performance
+- Enhance ethical framework
+
+## 📝 License
+
+MIT License - Open for research and educational use
 
 ## 👩‍💻 Author
 
 **Samira Patel**  
 BSc (Hons) Computer Science  
 University of Central Lancashire (UCLan)
+
+## 📞 Contact
+
+Questions about the analysis? [Reach out](https://github.com/Sipatel9)
+
+---
+
+**⭐ If you found this analysis valuable, please star it!**
